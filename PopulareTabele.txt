@@ -1,0 +1,37 @@
+--Populare tabela Clineti
+
+INSERT INTO Clienti VALUES(1,'Ion','Popescu','0748689012','popescuion13@gmail.com',27);
+INSERT INTO Clienti VALUES(2,'Mihai','Adumitroaiei','0778180012','adumiroaieiM@gmail.com',35);
+INSERT INTO Clienti VALUES(3,'Gigi','Popa','0760185612','GigiP14@gmail.com',42);
+INSERT INTO Clienti VALUES(4,'Andrei','Tudor','0758184312','TudorA32@gmail.com',29);
+INSERT INTO Clienti VALUES(5,'Alexandru','Vicol','0738182112','vicolalexandru@gmail.com',21);
+INSERT INTO Clienti VALUES(6,'Marin','Puscasu','0777369659','adumiroaieiM@gmail.com',32);
+
+
+--Populare tabela Camera
+INSERT INTO Camera VALUES(1,8);
+INSERT INTO Camera VALUES(2,19);
+INSERT INTO Camera VALUES(3,23);
+INSERT INTO Camera VALUES(4,60);
+INSERT INTO Camera VALUES(5,51);
+INSERT INTO Camera VALUES(6,40);
+
+
+--Populare tabela Detalii_camera
+INSERT INTO Detalii_camera VALUES(1,210,0,'standard',1,'DA','COMUN');
+INSERT INTO Detalii_camera VALUES(2,390,1,'deluxe',2,'DA','PROPRIU');
+INSERT INTO Detalii_camera VALUES(3,480,1,'apartament',4,'NU','PROPRIU');
+INSERT INTO Detalii_camera VALUES(4,550,5,'executiv',4,'DA','PROPRIU');
+INSERT INTO Detalii_camera VALUES(5,480,4,'standard',3,'NU','COMUN');
+INSERT INTO Detalii_camera VALUES(6,450,3,'deluxe',2,'DA','COMUN');
+
+
+--Populare tabela Rezervare
+INSERT INTO Rezervare VALUES(1,1,1,4,840,TO_DATE('14.09.2022','DD.MM.YYYY'),TO_DATE('18.09.2022','DD.MM.YYYY'));
+INSERT INTO Rezervare VALUES(2,3,5,7,3360,TO_DATE('02.08.2022','DD.MM.YYYY'),TO_DATE('09.09.2022','DD.MM.YYYY'));
+INSERT INTO Rezervare VALUES(3,4,6,3,900,TO_DATE('01.09.2022','DD.MM.YYYY'),TO_DATE('03.09.2022','DD.MM.YYYY'));
+INSERT INTO Rezervare VALUES(4,5,1,3,630,TO_DATE('23.08.2022','DD.MM.YYYY'),TO_DATE('26.08.2022','DD.MM.YYYY'));
+INSERT INTO Rezervare VALUES(5,2,2,5,780,TO_DATE('10.09.2022','DD.MM.YYYY'),TO_DATE('12.09.2022','DD.MM.YYYY'));
+INSERT INTO Rezervare VALUES(6,6,3,4,840,TO_DATE('14.08.2022','DD.MM.YYYY'),TO_DATE('18.08.2022','DD.MM.YYYY'));
+
+

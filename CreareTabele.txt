@@ -1,0 +1,85 @@
+CREATE TABLE Clienti(
+    id_client NUMBER(6) NOT NULL,
+    nume VARCHAR2(20) NOT NULL,
+    prenume VARCHAR2(20) NOT NULL,
+    telefon CHAR(10) NOT NULL,
+    email VARCHAR(100),
+    varsta NUMBER(6) DEFAULT 18 NOT NULL
+);
+
+ALTER TABLE Clienti MODIFY (email NOT NULL);
+
+ALTER TABLE Clienti ADD CONSTRAINT varsta CHECK (varsta>=18);
+
+ALTER TABLE Clienti ADD CONSTRAINT telefon CHECK (length(telefon) =10);
+
+ALTER TABLE Clienti ADD CONSTRAINT email CHECK (email LIKE  '%___@___%.__%');
+
+ALTER TABLE Clienti ADD CONSTRAINT client_pk PRIMARY KEY (id_client);
+
+ALTER TABLE Clienti ADD CONSTRAINT client_telefon_un UNIQUE (telefon);
+
+
+CREATE TABLE Detalii_camera(
+    id_camera NUMBER(6) NOT NULL,
+    pret_noapte NUMBER(6) NOT NULL,
+    etaj NUMBER(2) NOT NULL,
+    tip_camera VARCHAR(20),
+    capacitate NUMBER(3),
+    vedere_la_mare CHAR(3),
+    balcon VARCHAR(9)
+);
+
+ALTER TABLE Detalii_camera MODIFY (tip_camera NOT NULL);
+
+ALTER TABLE Detalii_camera MODIFY (capacitate NOT NULL);
+
+ALTER TABLE Detalii_camera MODIFY (vedere_la_mare NOT NULL);
+
+ALTER TABLE Detalii_camera MODIFY (balcon NOT NULL)
+
+CREATE UNIQUE INDEX Detalii_camera_indx ON
+    Detalii_camera(id_camera ASC);
+
+ALTER TABLE Detalii_camera
+    ADD CONSTRAINT capacitate CHECK (capacitate BETWEEN 1 AND 4);
+    
+ALTER TABLE Detalii_camera
+   ADD CONSTRAINT etaj CHECK (etaj BETWEEN 1 AND 61);
+
+ALTER TABLE Detalii_camera
+    ADD CONSTRAINT vedere_la_mare CHECK (vedere_la_mare in ('DA','NU'));
+
+ALTER TABLE Detalii_camera
+    ADD CONSTRAINT balcon  CHECK (balcon in ('PROPRIU','COMUN'));
+
+CREATE TABLE Rezervare(
+    id_rezervare NUMBER(6) NOT NULL,
+    id_client NUMBER(6) NOT NULL,
+    id_camera NUMBER(6) NOT NULL,
+    numar_nopti NUMBER(3) NOT NULL,
+    total_plata NUMBER(6) NOT NULL,
+    data_rezervare DATE NOT NULL,
+    data_eleiberare DATE NOT NULL
+);
+
+ALTER TABLE Rezervare ADD CONSTRAINT rezervare_pk PRIMARY KEY (id_rezervare);
+
+CREATE TABLE Camera(
+    id_camera NUMBER(6) NOT NULL,
+    numar_camera VARCHAR(4) NOT NULL
+);
+
+ALTER TABLE Camera ADD CONSTRAINT camera_pk PRIMARY KEY (id_camera);
+
+ALTER TABLE detalii_camera
+   ADD CONSTRAINT detalii_camera_fk FOREIGN KEY (id_camera)
+        REFERENCES Camera(id_camera);
+        
+ALTER TABLE Rezervare
+    ADD CONSTRAINT rezervare_client_fk FOREIGN KEY(id_client)
+       REFERENCES Clienti (id_client);
+
+ALTER TABLE Rezervare
+    ADD CONSTRAINT rezervare_camera_fk FOREIGN KEY (id_camera)
+        REFERENCES Camera(id_camera);
